@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hola</h1>
+  <script>
+    const getData = async () => {
+      try {
+        const data = await fetch('http://localhost/rest-api-php-mysql/create-simple-rest-api-php-mysql/items/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: "LG", description: "MONITOR", price: 123456789, category_id: 2,created:"2023-21-02 13:59:00" })
+        });
+        const result = await data.json();
+        console.log(result)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    function start() {
+      return getData();
+    }
+    start()
+  </script>
+</body>
+</html>
