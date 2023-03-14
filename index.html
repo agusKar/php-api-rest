@@ -11,12 +11,14 @@
   <script>
     const getData = async () => {
       try {
-        const data = await fetch('http://localhost/rest-api-php-mysql/create-simple-rest-api-php-mysql/items/create', {
+        // const data = await fetch('https://www.duam.ar/api/items/read'); GET
+        
+        const data = await fetch('https://www.duam.ar/api/items/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: "LG", description: "MONITOR", price: 123456789, category_id: 2,created:"2023-21-02 13:59:00" })
+          body: JSON.stringify({ email: "a@a.com" })
         });
         const result = await data.json();
         console.log(result)
