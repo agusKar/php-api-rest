@@ -19,6 +19,8 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN && $email != '') {
     $valorObtenidoTest = $data->valorObtenidoTest;
     $tipo = $data->tipo;
     $cantBajadas = $data->cantBajadas;
+    $densidadSiembra = $data->densidadSiembra;
+    $distanciaBajadas = $data->distanciaBajadas;
     $resultadoNum = $data->resultadoNum;
     $resultadoTitulo = $data->resultadoTitulo;
 
@@ -31,13 +33,15 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN && $email != '') {
         !is_null($valorObtenidoTest) &&
         !is_null($tipo) &&
         !is_null($cantBajadas) &&
+        !is_null($densidadSiembra) &&
+        !is_null($distanciaBajadas) &&
         !is_null($resultadoNum) &&
         !is_null($resultadoTitulo)
     ) {
         $final_array = ["status" => true, "message" => "Se grabo con exito los datos en nuestro CSV."];
         
         $h=fopen("reporte.csv","a");
-        fwrite($h,($email.','.$modelo.','.$semilla.','.$ancho.','.$velocidad.','.$tasa.','.$valorObtenidoTest.','.$tipo.','.$cantBajadas.','.$resultadoNum.','.$resultadoTitulo.chr(13).chr(10)));
+        fwrite($h,($email.','.$modelo.','.$semilla.','.$ancho.','.$velocidad.','.$tasa.','.$valorObtenidoTest.','.$tipo.','.$cantBajadas.','.$densidadSiembra.','.$distanciaBajadas.','.$resultadoNum.','.$resultadoTitulo.chr(13).chr(10)));
         fclose($h);
 
         http_response_code(200);

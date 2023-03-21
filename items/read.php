@@ -14,11 +14,11 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN  && $email != '' && ($handle
     $arrayValues = array();
     foreach ($read as $v) {
         $linea = str_replace(chr(13) . chr(10), ',', $v);
-        list($email_, $modelo_, $semilla_, $ancho_, $velocidad_, $tasa_, $valorObtenidoTest_, $tipo_, $cantBajadas_, $resultadoNum_,$resultadoTitulo_) = explode(",", $linea);
+        list($email_, $modelo_, $semilla_, $ancho_, $velocidad_, $tasa_, $valorObtenidoTest_, $tipo_, $cantBajadas_, $densidadSiembra_, $distanciaBajadas_, $resultadoNum_,$resultadoTitulo_) = explode(",", $linea);
 
 
         if ($email_ == $email) {
-            array_push($arrayValues, [$email_, $modelo_, $semilla_, $ancho_, $velocidad_, $tasa_, $valorObtenidoTest_, $tipo_, $cantBajadas_, $resultadoNum_,$resultadoTitulo_]);
+            array_push($arrayValues, [$email_, $modelo_, $semilla_, $ancho_, $velocidad_, $tasa_, $valorObtenidoTest_, $tipo_, $cantBajadas_, $densidadSiembra_, $distanciaBajadas_, $resultadoNum_,$resultadoTitulo_]);
         }
     }
 
