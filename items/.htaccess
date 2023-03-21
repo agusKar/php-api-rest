@@ -1,4 +1,6 @@
 RewriteEngine On    # Turn on the rewriting engine
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 RewriteRule ^read$ read.php [NC,L]
 RewriteRule ^read/([0-9_-]*)$ read.php?id=$1 [NC,L]
 RewriteRule ^create$ create.php [NC,L]

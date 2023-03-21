@@ -2,28 +2,54 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
- 
+header("Access-Control-Allow-Headers: origin, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+include "../config.php";
 $data = json_decode(file_get_contents("php://input"));
+$email = $data->email;
 
-if(!empty($data->email)){    
+if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN && $email != '') {
 
-    // $items->name = $data->name;
-    // $items->description = $data->description;
-    // $items->price = $data->price;
-    // $items->category_id = $data->category_id;
-    // $items->created = date('Y-m-d H:i:s'); 
-    
-    // if($items->create()){         
-        http_response_code(201);         
-        echo json_encode(array("message" => "Item was created."));
-    // } else{         
-    //     http_response_code(503);        
-    //     echo json_encode(array("message" => "Unable to create item."));
-    // }
-}else{    
-    http_response_code(400);    
-    echo json_encode(array("message" => "Unable to create item. Data is incomplete."));
+    // comprobar valores
+    $modelo = $data->modelo;
+    $semilla = $data->semilla;
+    $ancho = $data->ancho;
+    $velocidad = $data->velocidad;
+    $tasa = $data->tasa;
+    $valorObtenidoTest = $data->valorObtenidoTest;
+    $tipo = $data->tipo;
+    $cantBajadas = $data->cantBajadas;
+    $resultadoNum = $data->resultadoNum;
+    $resultadoTitulo = $data->resultadoTitulo;
+
+    if (
+        !is_null($modelo) &&
+        !is_null($semilla) &&
+        !is_null($ancho) &&
+        !is_null($velocidad) &&
+        !is_null($tasa) &&
+        !is_null($valorObtenidoTest) &&
+        !is_null($tipo) &&
+        !is_null($cantBajadas) &&
+        !is_null($resultadoNum) &&
+        !is_null($resultadoTitulo)
+    ) {
+        $final_array = ["status" => true, "message" => "Se grabo con exito los datos en nuestro CSV."];
+        
+        $h=fopen("reporte.csv","a");
+        fwrite($h,($email.','.$modelo.','.$semilla.','.$ancho.','.$velocidad.','.$tasa.','.$valorObtenidoTest.','.$tipo.','.$cantBajadas.','.$resultadoNum.','.$resultadoTitulo.chr(13).chr(10)));
+        fclose($h);
+
+        http_response_code(200);
+        echo json_encode($final_array);
+    } else {
+        $final_array = ["status" => false, "message" => "Hubo un error, vuelva a intentarlo mas tarde."];
+        http_response_code(401);
+        echo json_encode($final_array);
+    }
+} else {
+    http_response_code(401);
+    echo json_encode(
+        array("status" => false, "message" => "Faltan datos, vuelva a intentarlo mas tarde.")
+    );
 }
-?>
