@@ -39,7 +39,7 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN  && $email != '' && ($handle
     $mail->Host = "mail.duam.com.ar";
     $mail->SMTPAuth = true;
     $mail->Username = "info@duam.com.ar";
-    $mail->Password = "Du4m30112010";
+    $mail->Password = "SEe89!CPecz";
     $mail->From = "$email";
     $mail->FromName = "Calculador Duam";
     $mail->Timeout = 30;

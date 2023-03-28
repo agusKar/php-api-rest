@@ -8,28 +8,46 @@
 </head>
 <body>
   <h1>Hola</h1>
+  <form action="" method="get" onsubmit="return false;">
+    <input type="text" name="valiIpt" id="valiIpt" placeholder="please enter verification code" style="width: 200px;">
+    <canvas id="valicode" width="200" height="100" style="border:1px solid #d3d3d3;">
+    <input id="submit" type="submit" value="submit">
+  </form>
   <script>
-    const getData = async () => {
-      try {
-        // const data = await fetch('https://www.duam.ar/api/items/read'); GET
+    var canvas = document.getElementById("valicode");
+var ctx = canvas.getContext("2d");
+// // Create a red line in position 150
+// ctx.strokeStyle = "red";
+// ctx.moveTo(150, 20);
+// ctx.lineTo(150, 170);
+// ctx.stroke();
+
+ctx.font = "60x Arial";
+
+// Show the different textAlign values
+ctx.textAlign = "center";
+ctx.fillText("textAlign=center", 100, 50);
+    // const getData = async () => {
+    //   try {
+    //     // const data = await fetch('https://www.duam.ar/api/items/read'); GET
         
-        const data = await fetch('https://www.duam.ar/api/items/create', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: "a@a.com" })
-        });
-        const result = await data.json();
-        console.log(result)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    function start() {
-      return getData();
-    }
-    start()
+    //     const data = await fetch('https://www.duam.ar/api/items/create', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({ email: "a@a.com" })
+    //     });
+    //     const result = await data.json();
+    //     console.log(result)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
+    // function start() {
+    //   return getData();
+    // }
+    // start()
   </script>
 </body>
 </html>
