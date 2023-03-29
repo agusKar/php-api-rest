@@ -52,7 +52,7 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN && $email != '') {
         echo json_encode($final_array);
     }
 } else {
-    http_response_code(401);
+    http_response_code(200);
     echo json_encode(
         array("status" => false, "message" => "Faltan datos, vuelva a intentarlo mas tarde.")
     );
