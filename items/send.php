@@ -68,15 +68,15 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN  && $email != '' && ($handle
       http_response_code(200);
       echo json_encode(array("status" => true, "message" => "El email se envio correctamente"));
     } else {
-      http_response_code(404);
+      http_response_code(200);
       echo json_encode(array("status" => false, "message" => "Error al enviar el email."));
     }
 
   }else{
-    http_response_code(404);
+    http_response_code(200);
     echo json_encode(array("status" => false, "message" => "No hay items con este email."));
   }
 } else {
-  http_response_code(404);
+  http_response_code(200);
   echo json_encode(array("status" => false, "message" => "Error en la autentificacion."));
 }
