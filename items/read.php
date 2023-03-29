@@ -23,7 +23,7 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN  && $email != '' && ($handle
     }
 
     if(count($arrayValues) == 0){
-        http_response_code(401);
+        http_response_code(200);
         echo json_encode( array("status" => false, "message" => "No hay items con este email.") );
     }else{
         $final_array = ["status" => true, "items" => $arrayValues, "count" => count($arrayValues)];
@@ -31,6 +31,6 @@ if ($_SERVER["HTTP_AUTHORIZATION"] == $SECRET_TOKEN  && $email != '' && ($handle
         echo json_encode($final_array);
     }
 } else {
-    http_response_code(404);
+    http_response_code(200);
     echo json_encode( array("status" => false, "message" => "Error.") );
 }
